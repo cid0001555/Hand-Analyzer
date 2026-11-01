@@ -1,0 +1,94 @@
+[general]
+camera_index = 0
+capture_width = 1280
+capture_height = 720
+target_fps = 60
+mirror_horizontal = true
+execution_provider = "auto"
+
+[filter]
+min_cutoff = 0.8
+beta = 0.04
+d_cutoff = 1.0
+
+[fsm]
+require_clutch = true
+clutch_gesture = "SHAKA"
+clutch_dwell_ms = 450
+default_dwell_ms = 250
+default_cooldown_ms = 750
+click_enter_threshold = 0.046
+click_exit_threshold = 0.054
+click_enter_angle_deg = 29.0
+click_exit_angle_deg = 35.0
+pinch_enter_threshold = 0.033
+pinch_exit_threshold = 0.046
+pinch_enter_angle_deg = 19.0
+pinch_exit_angle_deg = 27.0
+
+[mappings.OPEN_PALM]
+mode = "discrete"
+description = "Play / Pause"
+dwell_ms = 250
+cooldown_ms = 900
+action = { type = "Media", command = "PlayPause" }
+
+[mappings.FIST]
+mode = "discrete"
+description = "Mute"
+dwell_ms = 300
+cooldown_ms = 1000
+action = { type = "Media", command = "Mute" }
+
+[mappings.VICTORY]
+mode = "discrete"
+description = "Next Desktop"
+dwell_ms = 250
+cooldown_ms = 600
+action_linux = { type = "Hotkey", keys = ["Super", "Right"] }
+action_windows = { type = "Hotkey", keys = ["Ctrl", "Win", "Right"] }
+
+[mappings.ROCK_ON]
+mode = "discrete"
+description = "Previous Desktop"
+dwell_ms = 250
+cooldown_ms = 600
+action_linux = { type = "Hotkey", keys = ["Super", "Left"] }
+action_windows = { type = "Hotkey", keys = ["Ctrl", "Win", "Left"] }
+
+[mappings.THUMB_UP]
+mode = "discrete"
+description = "Next Track"
+dwell_ms = 300
+cooldown_ms = 800
+action = { type = "Media", command = "NextTrack" }
+
+[mappings.THUMB_DOWN]
+mode = "discrete"
+description = "Previous Track"
+dwell_ms = 300
+cooldown_ms = 800
+action = { type = "Media", command = "PrevTrack" }
+
+[mappings.POINTING]
+mode = "continuous"
+description = "Air Mouse"
+control_type = "MousePointer"
+sensitivity = 3.0
+deadzone = 0.0004
+drag_deadzone = 0.010
+freeze_on_click_ms = 140
+
+[mappings.TWO_FINGER_TOGETHER]
+mode = "continuous"
+description = "Scroll"
+control_type = "ScrollWheel"
+scroll_speed_y = 12.0
+scroll_speed_x = 8.0
+
+[mappings.OK_SIGN_SLIDER]
+mode = "continuous"
+description = "Volume"
+control_type = "VolumeSlider"
+vertical_range_min = 0.20
+vertical_range_max = 0.80

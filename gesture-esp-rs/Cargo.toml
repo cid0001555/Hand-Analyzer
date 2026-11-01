@@ -1,0 +1,55 @@
+[package]
+name = "gesture-esp-rs"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = []
+cuda = ["ort/cuda", "ort/tensorrt", "ort/nvrtx"]
+
+[dependencies]
+ort = { version = "2.0.0-rc.9", features = ["copy-dylibs"] }
+ndarray = "0.16"
+image = { version = "0.25", default-features = false, features = ["jpeg", "png"] }
+glam = { version = "0.29", features = ["serde", "bytemuck"] }
+crossbeam-channel = "0.5"
+parking_lot = "0.12"
+serde = { version = "1.0", features = ["derive"] }
+toml = "0.8"
+bincode = "1.3"
+csv = "1.3"
+notify = "6.1"
+macroquad = "0.4"
+clap = { version = "4.5", features = ["derive"] }
+ctrlc = "3.4"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+anyhow = "1.0"
+thiserror = "1.0"
+
+[target.'cfg(target_os = "linux")'.dependencies]
+nokhwa = { version = "0.10", features = ["input-v4l"] }
+evdev = "0.12"
+nix = { version = "0.29", features = ["ioctl"] }
+
+[target.'cfg(target_os = "windows")'.dependencies]
+ort = { version = "2.0.0-rc.9", features = ["directml", "copy-dylibs"] }
+nokhwa = { version = "0.10", features = ["input-msmf"] }
+windows = { version = "0.58", features = [
+    "Win32_Foundation",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_Media_Audio",
+    "Win32_Media_Audio_Endpoints",
+    "Win32_System_Com",
+] }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+nokhwa = { version = "0.10", features = ["input-avfoundation"] }
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
